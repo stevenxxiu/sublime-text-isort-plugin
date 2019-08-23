@@ -44,3 +44,17 @@ for more details on isort see [the isort repo][isort].
 
 [isort]: https://github.com/timothycrosley/isort
 [package-control]: https://packagecontrol.io/
+
+
+Using isort
+===========
+
+By default isort command is run on save. To change this behaviour set your user/project settings to include:
+
+    {
+        "isort.sort_on_save": false,
+    }
+
+You can also run the command manually by bringing up the command menu, and select "isort: sort imports" command.
+
+Note that the command is only visible, and runs on autosave, when used on "python files".
