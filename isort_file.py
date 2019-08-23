@@ -8,8 +8,19 @@ from .isort import SortImports
 
 sys.path.append(os.path.dirname(__file__))
 
+DEFAULT_SORT_ON_SAVE = True
+
+
+def is_python(view):
+    return view.match_selector(0, "source.python")
+
 
 class IsortCommand(sublime_plugin.TextCommand):
+    def is_enabled(self):
+        return is_python(self.view)
+
+    is_visible = is_enabled
+
     def get_region(self):
         return sublime.Region(0, self.view.size())
 
@@ -26,6 +37,7 @@ class IsortCommand(sublime_plugin.TextCommand):
         this_contents = self.get_buffer_contents()
         settings = self.view.settings().get('isort') or {}
         sorted_imports = SortImports(
+            file_path=self.view.file_name(),  # to load isort settings
             file_contents=this_contents,
             **settings
         ).output
@@ -38,3 +50,13 @@ class IsortCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
         self.sort_imports(edit)
+
+
+class IsortOnSave(sublime_plugin.ViewEventListener):
+    def on_pre_save(self):
+        settings = self.view.settings() or {}
+        sort_on_save = settings.get('isort.sort_on_save')
+        if sort_on_save is None:
+            sort_on_save = DEFAULT_SORT_ON_SAVE
+        if sort_on_save:
+            self.view.run_command('isort')
