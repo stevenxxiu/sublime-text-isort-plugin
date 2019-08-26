@@ -8,7 +8,7 @@ usage:
 Copyright (C) 2013  Timothy Edmund Crosley
 
 Implementation originally from @HappyLeapSecond stack overflow user in response to:
-   http://stackoverflow.com/questions/5967500/how-to-correctly-sort-a-string-with-a-number-inside
+   https://stackoverflow.com/questions/5967500/how-to-correctly-sort-a-string-with-a-number-inside
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 documentation files (the "Software"), to deal in the Software without restriction, including without limitation
@@ -33,7 +33,7 @@ def _atoi(text):
 
 
 def _natural_keys(text):
-    return [_atoi(c) for c in re.split('(\d+)', text)]
+    return [_atoi(c) for c in re.split(r'(\d+)', text)]
 
 
 def nsorted(to_sort, key=None):
