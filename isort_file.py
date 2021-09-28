@@ -1,12 +1,11 @@
 import os
 import sys
-
-import sublime
-import sublime_plugin
-
-from .isort import SortImports
+from pathlib import Path
 
 sys.path.append(os.path.dirname(__file__))
+import isort
+import sublime
+import sublime_plugin
 
 DEFAULT_SORT_ON_SAVE = True
 
@@ -36,11 +35,11 @@ class IsortCommand(sublime_plugin.TextCommand):
 
         this_contents = self.get_buffer_contents()
         settings = self.view.settings().get('isort') or {}
-        sorted_imports = SortImports(
-            file_path=self.view.file_name(),  # to load isort settings
-            file_contents=this_contents,
+        sorted_imports = isort.code(
+            code=this_contents,
+            file_path=Path(self.view.file_name()),  # to load isort settings
             **settings
-        ).output
+        )
         self.view.replace(edit, self.get_region(), sorted_imports)
 
         # Our sel has moved now..
