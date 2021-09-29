@@ -1,4 +1,4 @@
-Sublime text isort plugin
+Sublime Text isort plugin
 =========================
 
 Small plugin that adds a command to sublime which replaces the contents with the output of the isort library.
@@ -14,24 +14,24 @@ Available in [@wbond's package control][package-control].  Just bring up the pac
 
 Clone this repository from your Sublime packages directory:
 
-#### Linux (untested)
+#### Linux
 
 ```
-$ cd ~/.config/sublime-text-2/Packages
+$ cd ~/.config/sublime-text/Packages
 $ git clone https://github.com/thijsdezoete/sublime-text-isort-plugin
 ```
 
 #### OSX
 
 ```
-$ cd "~/Library/Application Support/Sublime Text 2/Packages"
+$ cd "~/Library/Application Support/Sublime Text/Packages"
 $ git clone https://github.com/thijsdezoete/sublime-text-isort-plugin
 ```
 
 #### Windows
 
 ```
-$ cd "%APPDATA%\Sublime Text 2"
+$ cd "%APPDATA%\Sublime Text"
 $ git clone https://github.com/thijsdezoete/sublime-text-isort-plugin
 ```
 
